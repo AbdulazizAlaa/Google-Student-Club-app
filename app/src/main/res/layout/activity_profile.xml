@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bluewasp.themonobly.Activities.Profile">
+
+
+    <TextView
+        android:id="@+id/profile_user_id_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id" />
+
+    <TextView
+        android:id="@+id/profile_first_name_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="first name" />
+
+    <TextView
+        android:id="@+id/profile_last_name_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="last name" />
+
+    <TextView
+        android:id="@+id/profile_email_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email" />
+
+    <TextView
+        android:id="@+id/profile_phone_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="phone" />
+
+    <TextView
+        android:id="@+id/profile_profile_image_path_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="image" />
+
+    <TextView
+        android:id="@+id/profile_money_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="money" />
+
+    <TextView
+        android:id="@+id/profile_rank_id_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rank" />
+
+    <TextView
+        android:id="@+id/profile_exp_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="exp" />
+
+    <TextView
+        android:id="@+id/profile_committe_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="committe" />
+
+    <TextView
+        android:id="@+id/profile_position_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="position" />
+
+</LinearLayout>
