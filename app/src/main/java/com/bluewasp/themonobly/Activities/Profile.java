@@ -1,17 +1,32 @@
 package com.bluewasp.themonobly.Activities;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.balysv.materialmenu.MaterialMenuDrawable;
+import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
 import com.bluewasp.themonobly.Beans.Tags;
 import com.bluewasp.themonobly.R;
 
 
 public class Profile extends ActionBarActivity {
+
+    //action bar
+    Toolbar toolbar;
+    MaterialMenuIconToolbar sideMenuIcon;
+    ImageView actionbarProfileImgV;
+    TextView actionbarNameTv, actionbarGollarsTv;
+    ProgressBar actionbarLevelBar;
 
     SharedPreferences pref;
     String id, firstName, lastName, mobile, email, profileImagePath, committe, position, money, rankID, exp;
@@ -22,11 +37,52 @@ public class Profile extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        initializeActionbar();
         init();
         initializeProfile();
 
+    }
+
+
+    public void initializeActionbar(){
+        //getting toolbar reference from layout
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        //setting the toolbar as layout actionbar
+        if (toolbar != null)
+            setSupportActionBar(toolbar);
+
+        //listening to menu icon buttons
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //destroy activity
+                if (sideMenuIcon.getState() == MaterialMenuDrawable.IconState.ARROW) {
+                    //changing menu icon
+                    sideMenuIcon.animatePressedState(MaterialMenuDrawable.IconState.BURGER);
+                    //going back
+                    finish();
+                }
+            }
+        });
+
+        //attaching menu icon to the toolbar
+        sideMenuIcon = new MaterialMenuIconToolbar(this, Color.WHITE, MaterialMenuDrawable.Stroke.THIN) {
+            @Override
+            public int getToolbarViewId() {
+                return R.id.toolbar;
+            }
+        };
+
+        sideMenuIcon.animatePressedState(MaterialMenuDrawable.IconState.ARROW);
+
+        sideMenuIcon.setNeverDrawTouch(true);
+
+        //getting toolbar components' references
+        actionbarNameTv = (TextView) findViewById(R.id.action_bar_name_tv);
+        actionbarGollarsTv = (TextView) findViewById(R.id.action_bar_gollars_tv);
+        actionbarProfileImgV = (ImageView) findViewById(R.id.action_bar_profile_img);
+        actionbarLevelBar = (ProgressBar) findViewById(R.id.action_bar_level_progressBar);
     }
 
 
@@ -70,8 +126,8 @@ public class Profile extends ActionBarActivity {
         moneyTV.setText(money);
         rankIDTV.setText(rankID);
         expTV.setText(exp);
+        actionbarNameTv.setText(firstName);
 
-        //getSupportActionBar().setTitle(firstName+" "+lastName);
     }
 
 

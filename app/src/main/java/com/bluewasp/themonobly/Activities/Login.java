@@ -39,17 +39,6 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // check if logged in
-        SharedPreferences pref = getSharedPreferences(Tags.TAG_PREF_FILE,
-                MODE_PRIVATE);
-        String status = pref.getString(Tags.PREF_STATUS, "");
-        if (status.equals(Tags.PREF_LOGGED_IN)) {
-            Intent i = new Intent(Login.this, Home.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-            Login.this.finish();
-        }
-
         setContentView(R.layout.activity_login);
 
         // initialize resources

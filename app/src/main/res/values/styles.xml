@@ -17,13 +17,12 @@
 
         <!-- setting edit text style -->
         <item name="android:editTextStyle">@style/editText</item>
-
+        <item name="android:buttonStyle">@style/button</item>
     </style>
 
     <style name="actionbar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/primary</item>
         <item name="android:titleTextStyle">@style/actionbarTextStyle</item>
-        <!--<item name="android:homeLayout">@layout/action_bar_layout</item>-->
         <!-- compatibalitiy issues -->
         <item name="background">@color/primary</item>
     </style>
@@ -34,19 +33,37 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="actionbarTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="actionbarTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/primary_dark</item>
     </style>
 
-    <style name="editText" parent="@android:style/Widget.EditText">
+    <style name="editText" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/login_edittext_background</item>
+        <item name="android:background">@drawable/text_background_loginform</item>
         <item name="android:ems">10</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="smalleditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/textsmall_background_signup</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="button" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:background">@drawable/login_register_button_selector</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="Animation" />

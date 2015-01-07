@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
@@ -35,16 +36,21 @@ import java.util.ArrayList;
 public class Home extends ActionBarActivity implements View.OnClickListener,
         AdapterView.OnItemClickListener {
 
-    Toolbar toolbar;
-    // menu
+    // drawer
     private DrawerLayout drawerLayout;
     private boolean isDrawerOpened;
-    MaterialMenuIconToolbar sideMenuIcon;
-    ImageView profilePicIV;
-    TextView nameTV;
+    ImageView sideMenuProfileImgV;
+    TextView sideMenuNameTV;
     ListView menuLV;
     SideMenuAdapter menuAdapter;
     ArrayList<SideMenuItemData> menuItemList;
+
+    //action bar
+    Toolbar toolbar;
+    MaterialMenuIconToolbar sideMenuIcon;
+    ImageView actionbarProfileImgV;
+    TextView actionbarNameTv, actionbarGollarsTv;
+    ProgressBar actionbarLevelBar;
 
     SharedPreferences pref;
     String id, firstName, lastName, profileImagePath;
@@ -53,31 +59,49 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.sidemenu_icon_selector);
-        //getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         setContentView(R.layout.activity_home);
 
+
+        initializeSideMenu();
+        initializeActionbar();
+        initializePref();
+        initializeData(firstName+" "+lastName, profileImagePath);
+
+
+    }
+
+
+    public void initializeActionbar(){
+        //getting toolbar reference from layout
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        //setting the toolbar as layout actionbar
         if (toolbar != null)
             setSupportActionBar(toolbar);
 
+        //listening to menu icon buttons
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //when drawer open ==> close it
                 if (sideMenuIcon.getState() == MaterialMenuDrawable.IconState.ARROW) {
+                    //changing menu icon
                     sideMenuIcon.animatePressedState(MaterialMenuDrawable.IconState.BURGER);
+                    //closing drawer
                     drawerLayout.closeDrawer(Gravity.LEFT);
-                } else if (sideMenuIcon.getState() == MaterialMenuDrawable.IconState.BURGER) {
+                }
+                //when drawer closed ==> open it
+                else if (sideMenuIcon.getState() == MaterialMenuDrawable.IconState.BURGER) {
+                    //changing menu icon
                     sideMenuIcon.animatePressedState(MaterialMenuDrawable.IconState.ARROW);
+                    //opening drawer
                     drawerLayout.openDrawer(Gravity.LEFT);
                 }
-
             }
         });
 
+        //attaching menu icon to the toolbar
         sideMenuIcon = new MaterialMenuIconToolbar(this, Color.WHITE, MaterialMenuDrawable.Stroke.THIN) {
             @Override
             public int getToolbarViewId() {
@@ -87,23 +111,22 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
 
         sideMenuIcon.setNeverDrawTouch(true);
 
-
-        initPref();
-        initializeSideMenu();
-        //initInfo(firstName+" "+lastName, profileImagePath);
-
-
+        //getting toolbar components' references
+        actionbarNameTv = (TextView) findViewById(R.id.action_bar_name_tv);
+        actionbarGollarsTv = (TextView) findViewById(R.id.action_bar_gollars_tv);
+        actionbarProfileImgV = (ImageView) findViewById(R.id.action_bar_profile_img);
+        actionbarLevelBar = (ProgressBar) findViewById(R.id.action_bar_level_progressBar);
     }
 
-
     public void initializeSideMenu() {
-        // setting up the menu View
-        //View menuV = getLayoutInflater().inflate(R.layout.side_menu_list_view,null);
 
+        //getting menu list view reference
         menuLV = (ListView) findViewById(R.id.home_left_drawer);
 
+        //initializing menu items array list
         menuItemList = new ArrayList<SideMenuItemData>();
 
+        //adding menu items to the array list
         menuItemList.add(new SideMenuItemData("Market",
                 R.drawable.side_menu_market_icon));
         menuItemList.add(new SideMenuItemData("Community",
@@ -115,28 +138,37 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
         menuItemList.add(new SideMenuItemData("Logout",
                 R.drawable.side_menu_event_icon));
 
+        //initializing the menu adapter
         menuAdapter = new SideMenuAdapter(this, menuItemList);
 
-        //menuLV.setAdapter(menuAdapter);
-
+        //attaching item click listener to the menu items
         menuLV.setOnItemClickListener(this);
 
         // setting up header view
+
+        //inflating header view layout
         View menuHeaderV = getLayoutInflater().inflate(
                 R.layout.side_menu_header, null);
 
-        profilePicIV = (ImageView) menuHeaderV
+        //getting side menu components' references
+        sideMenuProfileImgV = (ImageView) menuHeaderV
                 .findViewById(R.id.side_menu_header_profile_picIV);
-        nameTV = (TextView) menuHeaderV
+        sideMenuNameTV = (TextView) menuHeaderV
                 .findViewById(R.id.side_menu_header_nameTV);
 
-        profilePicIV.setOnClickListener(this);
+        //attaching click listener to the profile image
+        sideMenuProfileImgV.setOnClickListener(this);
 
+        //adding header view to the menu list view
         menuLV.addHeaderView(menuHeaderV);
 
+        //setting menu list adapter
         menuLV.setAdapter(menuAdapter);
 
+        //getting drawer layout reference
         drawerLayout = (DrawerLayout) findViewById(R.id.home_drawer);
+
+        //setting drawer layout listener
         drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -167,15 +199,17 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
 
     }
 
-    public void initInfo(String name, String profileImagePath) {
+    public void initializeData(String name, String profileImagePath) {
 
-        nameTV.setText(name);
+        //setting profile name
+        sideMenuNameTV.setText(name);
+        actionbarNameTv.setText(name);
 
-        //load profile image
+        //setting profile image
 
     }
 
-    public void initPref() {
+    public void initializePref() {
         pref = getSharedPreferences(Tags.TAG_PREF_FILE, MODE_PRIVATE);
 
         id = pref.getString(Tags.PROFILE_USER_ID, "");
@@ -233,7 +267,8 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
             case R.id.side_menu_header_profile_picIV:
                 i = new Intent(Home.this, Profile.class);
                 startActivity(i);
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
 
             default:
@@ -250,19 +285,23 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
         switch (position) {
             case 1:
                 // Market
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case 2:
                 // Community
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case 3:
                 // Top Players
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case 4:
                 // Events
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case 5:
                 // Logout
@@ -304,7 +343,8 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
                                 });
                 AlertDialog c = dialog.create();
                 c.show();
-                //menu.toggle();
+                //closing drawer
+                drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
 
             default:

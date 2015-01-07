@@ -2,31 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@android:color/transparent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+        android:id="@+id/side_menu_header_profile_picIV"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-
-        <com.github.siyamed.shapeimageview.CircularImageView
-            android:id="@+id/side_menu_header_profile_picIV"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/user" />
-
-    </FrameLayout>
+        android:src="@drawable/user" />
 
     <TextView
         android:id="@+id/side_menu_header_nameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
         android:text="Abdulaziz"
         android:textSize="20sp"
         android:textStyle="bold" />

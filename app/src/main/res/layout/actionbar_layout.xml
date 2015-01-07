@@ -3,26 +3,98 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:gravity="end|center_vertical"
+    android:layout_gravity="end"
+    android:gravity="end"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Abdulaziz"
-        style="@style/actionbar.text"
-        android:layout_marginRight="5dp"
-        android:id="@+id/textView" />
+    <!-- linear layout to hold left section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <!-- inner linear layout to hold level and Gollars -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- linear layout to hold level -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- level text view -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Level 1"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/action_bar_level_tv" />
+
+                <!-- health bar for level -->
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/action_bar_level_progressBar" />
+
+            </LinearLayout>
+
+            <!-- frame layout for Gollars -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/actionbar_gollars_background"
+                android:layout_gravity="center">
+
+                <!-- text View for Gollars -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/action_bar_gollars_tv"
+                    android:text="0.00 G" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- linear layout to hold profile img and name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".4"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:orientation="horizontal">
+
+        <!-- name text view -->
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:text="Abdulaziz alaa"
+            style="@style/actionbar.text"
+            android:layout_marginRight="5dp"
+            android:id="@+id/action_bar_name_tv" />
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/action_bar_profile_img"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/user"
+            app:siBorderWidth="1dp"
+            app:siBorderColor="@color/primary_text" />
 
 
-
-    <com.github.siyamed.shapeimageview.CircularImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/user"
-        app:siBorderWidth="1dp"
-        app:siBorderColor="@color/primary_text"/>
+    </LinearLayout>
 
 </LinearLayout>

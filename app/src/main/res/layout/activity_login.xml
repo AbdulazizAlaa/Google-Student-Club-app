@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/background_img_loginform"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.bluewasp.themonobly.Activities.Login">
@@ -17,8 +17,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_textfields_background"
+            android:background="@drawable/frontback_text_background_loginform"
             android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:orientation="vertical">
 
             <EditText
@@ -36,30 +39,30 @@
                 android:id="@+id/login_password_ED"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:hint="Password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword" />
-
-            <Button
-                android:id="@+id/login_login_B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/login_login_button_unsel"
-                android:layout_marginBottom="5dp"
-                android:text="Login"
-                android:textColor="#FFFFFF" />
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight=".7"
-        android:gravity="bottom|center_horizontal"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/login_login_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Login" />
 
         <TextView
             android:id="@+id/login_sign_up_B"
