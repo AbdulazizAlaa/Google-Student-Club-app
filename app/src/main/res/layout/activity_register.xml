@@ -32,12 +32,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:orientation="horizontal">
 
                     <FrameLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp">
+                        android:layout_height="wrap_content">
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -52,7 +53,7 @@
                     </FrameLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
@@ -63,7 +64,6 @@
                             style="@style/smalleditText"
                             android:layout_marginBottom="10dp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:hint="First Name"
                             android:inputType="textPersonName" />
 
@@ -71,7 +71,6 @@
                             android:id="@+id/register_last_name_ED"
                             style="@style/smalleditText"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
                             android:hint="Last Name"
                             android:inputType="textPersonName" />
 
@@ -138,8 +137,10 @@
 
             <Button
                 android:id="@+id/register_registeristration_B"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Register" />
         </LinearLayout>

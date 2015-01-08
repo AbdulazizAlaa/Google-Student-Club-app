@@ -1,6 +1,8 @@
 package com.bluewasp.themonobly.Activities;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,16 +12,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
+import com.bluewasp.themonobly.Adapters.ProfileListAdapter;
 import com.bluewasp.themonobly.Beans.Tags;
+import com.bluewasp.themonobly.Models.ProfileListItemData;
 import com.bluewasp.themonobly.R;
+
+import java.util.ArrayList;
 
 
 public class Profile extends ActionBarActivity {
+
+
+    //badges list
+    ListView badgesLV;
+    ArrayList<ProfileListItemData> badgesItemsData;
+    ProfileListAdapter badgesAdapter;
+
+    //action cards list
+    ListView actionCardsLV;
+    ArrayList<ProfileListItemData> actionCardsItemsData;
+    ProfileListAdapter actionCardsAdapter;
 
     //action bar
     Toolbar toolbar;
@@ -41,10 +59,35 @@ public class Profile extends ActionBarActivity {
         init();
         initializeProfile();
 
+
+        //badges list initializing
+        badgesLV = (ListView) findViewById(R.id.profile_badges_lv);
+
+        badgesItemsData = new ArrayList<ProfileListItemData>();
+
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+
+        badgesAdapter = new ProfileListAdapter(this, badgesItemsData);
+
+        badgesLV.setAdapter(badgesAdapter);
+
+        //badges list initializing
+        actionCardsLV = (ListView) findViewById(R.id.profile_action_cards_lv);
+
+        actionCardsItemsData = new ArrayList<ProfileListItemData>();
+
+        actionCardsItemsData.add(new ProfileListItemData("First Action Card Hay People how are you? :D :D :D: :D :D :D :D :D", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+
+        actionCardsAdapter = new ProfileListAdapter(this, actionCardsItemsData);
+
+        actionCardsLV.setAdapter(actionCardsAdapter);
+
+
     }
 
 
-    public void initializeActionbar(){
+    public void initializeActionbar() {
         //getting toolbar reference from layout
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -78,29 +121,31 @@ public class Profile extends ActionBarActivity {
 
         sideMenuIcon.setNeverDrawTouch(true);
 
+        /*
         //getting toolbar components' references
         actionbarNameTv = (TextView) findViewById(R.id.action_bar_name_tv);
         actionbarGollarsTv = (TextView) findViewById(R.id.action_bar_gollars_tv);
         actionbarProfileImgV = (ImageView) findViewById(R.id.action_bar_profile_img);
         actionbarLevelBar = (ProgressBar) findViewById(R.id.action_bar_level_progressBar);
+        */
     }
 
 
-    public void init(){
-        idTV = (TextView) findViewById(R.id.profile_user_id_TV);
-        firstNameTV = (TextView) findViewById(R.id.profile_first_name_TV);
-        lastNameTV = (TextView) findViewById(R.id.profile_last_name_TV);
-        mobileTV = (TextView) findViewById(R.id.profile_phone_TV);
-        emailTV = (TextView) findViewById(R.id.profile_email_TV);
-        profileImagePathTV = (TextView) findViewById(R.id.profile_profile_image_path_TV);
-        committeTV = (TextView) findViewById(R.id.profile_committe_TV);
-        positionTV = (TextView) findViewById(R.id.profile_position_TV);
-        moneyTV = (TextView) findViewById(R.id.profile_money_TV);
-        rankIDTV = (TextView) findViewById(R.id.profile_rank_id_TV);
-        expTV = (TextView) findViewById(R.id.profile_exp_TV);
+    public void init() {
+        idTV = (TextView) findViewById(R.id.profile_user_id_tv);
+        firstNameTV = (TextView) findViewById(R.id.profile_first_name_tv);
+        lastNameTV = (TextView) findViewById(R.id.profile_last_name_tv);
+        mobileTV = (TextView) findViewById(R.id.profile_phone_tv);
+        emailTV = (TextView) findViewById(R.id.profile_email_tv);
+        profileImagePathTV = (TextView) findViewById(R.id.profile_profile_image_path_tv);
+        committeTV = (TextView) findViewById(R.id.profile_committe_tv);
+        positionTV = (TextView) findViewById(R.id.profile_position_tv);
+        moneyTV = (TextView) findViewById(R.id.profile_money_tv);
+        rankIDTV = (TextView) findViewById(R.id.profile_rank_id_tv);
+        expTV = (TextView) findViewById(R.id.profile_exp_tv);
     }
 
-    public void initializeProfile(){
+    public void initializeProfile() {
         pref = getSharedPreferences(Tags.TAG_PREF_FILE, MODE_PRIVATE);
 
         id = pref.getString(Tags.PROFILE_USER_ID, "");
@@ -126,7 +171,9 @@ public class Profile extends ActionBarActivity {
         moneyTV.setText(money);
         rankIDTV.setText(rankID);
         expTV.setText(exp);
-        actionbarNameTv.setText(firstName);
+        //actionbarNameTv.setText(firstName);
+
+        toolbar.setTitle(firstName+" "+lastName);
 
     }
 

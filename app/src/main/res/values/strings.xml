@@ -8,6 +8,6 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_register">Register</string>
-    <string name="title_activity_login_register">LoginRegister</string>
+    <string name="title_activity_login_register">Monobly</string>
 
 </resources>

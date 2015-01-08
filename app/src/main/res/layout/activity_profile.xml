@@ -14,21 +14,18 @@
         style="@style/actionbar"
         android:theme="@style/actionbar">
 
-        <include layout="@layout/actionbar_layout" />
+        <!--<include layout="@layout/actionbar_layout" />-->
     </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/background_profile" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_profile">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal|bottom"
             android:gravity="center_horizontal|bottom"
             android:orientation="vertical">
@@ -62,7 +59,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/profile_first_name_TV"
+                    android:id="@+id/profile_first_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
@@ -72,7 +69,7 @@
 
                 <TextView
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/profile_last_name_TV"
+                    android:id="@+id/profile_last_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
@@ -82,19 +79,19 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/profile_committe_TV"
+                android:id="@+id/profile_committe_tv"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:text="committe" />
 
             <TextView
-                android:id="@+id/profile_position_TV"
+                android:id="@+id/profile_position_tv"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:text="position" />
@@ -103,7 +100,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/bartwo_grades_profile">
@@ -127,7 +126,7 @@
                         android:text="+" />
 
                     <TextView
-                        android:id="@+id/profile_gollars_tv"
+                        android:id="@+id/profile_money_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"
@@ -197,48 +196,93 @@
 
     </FrameLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="19sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Badges:"/>
+
+
+            <ListView
+                android:id="@+id/profile_badges_lv"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#b4cbea"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="19sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Action Cards:"/>
+
+            <ListView
+                android:id="@+id/profile_action_cards_lv"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
     <TextView
-        android:id="@+id/profile_user_id_TV"
+        android:id="@+id/profile_user_id_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="id" />
 
 
     <TextView
-        android:id="@+id/profile_email_TV"
+        android:id="@+id/profile_email_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="email" />
 
     <TextView
-        android:id="@+id/profile_phone_TV"
+        android:id="@+id/profile_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="phone" />
 
     <TextView
-        android:id="@+id/profile_profile_image_path_TV"
+        android:id="@+id/profile_profile_image_path_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="image" />
 
-    <TextView
-        android:id="@+id/profile_money_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="money" />
 
     <TextView
-        android:id="@+id/profile_rank_id_TV"
+        android:id="@+id/profile_rank_id_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="rank" />
-
-    <TextView
-        android:id="@+id/profile_exp_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="exp" />
 
 
 </LinearLayout>

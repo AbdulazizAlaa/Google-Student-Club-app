@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bluewasp.themonobly.Models.SideMenuItemData;
 import com.bluewasp.themonobly.R;
-import com.bluewasp.themonobly.Viewholders.SideMenuItemViewholder;
+import com.bluewasp.themonobly.Viewholders.SimpleItemViewholder;
 
 import java.util.ArrayList;
 
@@ -56,14 +56,14 @@ public class SideMenuAdapter extends BaseAdapter{
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.side_menu_item, null);
 
-            SideMenuItemViewholder viewholder = new SideMenuItemViewholder();
+            SimpleItemViewholder viewholder = new SimpleItemViewholder();
 
             viewholder.titleTV = (TextView) convertView.findViewById(R.id.side_menu_item_titleTV);
             viewholder.iconIV = (ImageView) convertView.findViewById(R.id.side_menu_item_iconIV);
 
             convertView.setTag(viewholder);
         }
-        SideMenuItemViewholder viewholder = (SideMenuItemViewholder) convertView.getTag();
+        SimpleItemViewholder viewholder = (SimpleItemViewholder) convertView.getTag();
 
         viewholder.titleTV.setText(itemsList.get(position).getTitle());
         viewholder.iconIV.setImageResource(itemsList.get(position).getIcon());

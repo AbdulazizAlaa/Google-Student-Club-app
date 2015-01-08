@@ -33,7 +33,6 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
     EditText emailED, passwordED;
     Button loginB;
-    TextView signupB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +50,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
         loginB = (Button) findViewById(R.id.login_login_B);
 
-        signupB = (TextView) findViewById(R.id.login_sign_up_B);
 
         loginB.setOnClickListener(this);
-        signupB.setOnClickListener(this);
     }
 
 
@@ -90,10 +87,6 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                 new LoginProcess().execute(Tags.TAG_URL
                                 + "login/login_verification", emailED.getText().toString(),
                         passwordED.getText().toString());
-                break;
-            case R.id.login_sign_up_B:
-                i = new Intent(Login.this, Register.class);
-                startActivity(i);
                 break;
             default:
                 break;
