@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -116,6 +118,9 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
         actionbarGollarsTv = (TextView) findViewById(R.id.action_bar_gollars_tv);
         actionbarProfileImgV = (ImageView) findViewById(R.id.action_bar_profile_img);
         actionbarLevelBar = (ProgressBar) findViewById(R.id.action_bar_level_progressBar);
+
+        actionbarLevelBar.setProgress(20);
+        actionbarLevelBar.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
     }
 
     public void initializeSideMenu() {

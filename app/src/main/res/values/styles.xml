@@ -36,7 +36,7 @@
     <style name="actionbarTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="editText" parent="Widget.AppCompat.EditText">

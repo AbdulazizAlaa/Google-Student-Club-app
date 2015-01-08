@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -172,9 +173,7 @@ public class Profile extends ActionBarActivity {
         rankIDTV.setText(rankID);
         expTV.setText(exp);
         //actionbarNameTv.setText(firstName);
-
-        toolbar.setTitle(firstName+" "+lastName);
-
+        getSupportActionBar().setTitle(firstName+" "+lastName);
     }
 
 
