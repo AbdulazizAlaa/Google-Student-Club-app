@@ -3,6 +3,7 @@ package com.bluewasp.themonobly.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.bluewasp.themonobly.Beans.ServiceHandler;
 import com.bluewasp.themonobly.Beans.Tags;
 import com.bluewasp.themonobly.R;

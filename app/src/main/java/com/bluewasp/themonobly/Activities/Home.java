@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v4.widget.DrawerLayout;
@@ -23,15 +25,22 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuIcon;
 import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
 import com.bluewasp.themonobly.Adapters.SideMenuAdapter;
+import com.bluewasp.themonobly.Beans.Commons;
+import com.bluewasp.themonobly.Beans.NetworkHelper;
 import com.bluewasp.themonobly.Beans.Tags;
 import com.bluewasp.themonobly.Models.SideMenuItemData;
 import com.bluewasp.themonobly.R;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -56,6 +65,7 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
 
     SharedPreferences pref;
     String id, firstName, lastName, profileImagePath;
+    Bitmap profileImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,10 +221,15 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
         actionbarNameTv.setText(name);
 
         //setting profile image
-
+        if(profileImg != null){
+            sideMenuProfileImgV.setImageBitmap(profileImg);
+            actionbarProfileImgV.setImageBitmap(profileImg);
+        }
     }
 
     public void initializePref() {
+        profileImg = null;
+
         pref = getSharedPreferences(Tags.TAG_PREF_FILE, MODE_PRIVATE);
 
         id = pref.getString(Tags.PROFILE_USER_ID, "");
@@ -222,6 +237,47 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
         lastName = pref.getString(Tags.PROFILE_LAST_NAME, "");
         profileImagePath = pref.getString(Tags.PROFILE_PROFILE_IMAGE_PATH, "");
 
+        //to delete the if needed
+        //deleteFile(Tags.PROFILE_PROFILE_IMAGE_FILE);
+
+        //trying to open the file containing the image
+        FileInputStream file = null;
+        try {
+            file = openFileInput(Tags.PROFILE_PROFILE_IMAGE_FILE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if(file != null){
+            //image file found
+            //then decoding it and turning it to a bitmap
+            profileImg = BitmapFactory.decodeStream(file);
+        }else{
+            //image file not found
+            //then constructing image url
+            // making image request and adding it to the queue
+            String url = "http://gsc-asu.com/GSC/"+profileImagePath;
+            //image Request
+            ImageRequest imgReq = new ImageRequest(url, new Response.Listener<Bitmap>() {
+                @Override
+                public void onResponse(Bitmap bitmap) {
+                    //successfully got the image
+                    //first display the image
+                    sideMenuProfileImgV.setImageBitmap(bitmap);
+                    actionbarProfileImgV.setImageBitmap(bitmap);
+                    profileImg = bitmap;
+
+                    //then store it in a file with the name profileImage to retrieve later
+                    Commons.createImageFileFromBitmap(Home.this, Tags.PROFILE_PROFILE_IMAGE_FILE, bitmap);
+                }
+            }, 0, 0, null, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+
+                }
+            });
+            NetworkHelper.getInstance(Home.this).getRequestQueue().add(imgReq);
+        }
     }
 
     @Override

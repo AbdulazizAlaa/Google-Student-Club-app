@@ -24,6 +24,8 @@ import com.bluewasp.themonobly.Beans.Tags;
 import com.bluewasp.themonobly.Models.ProfileListItemData;
 import com.bluewasp.themonobly.R;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
@@ -49,7 +51,9 @@ public class Profile extends ActionBarActivity {
 
     SharedPreferences pref;
     String id, firstName, lastName, mobile, email, profileImagePath, committe, position, money, rankID, exp;
+    Bitmap profileImg;
     TextView idTV, firstNameTV, lastNameTV, mobileTV, emailTV, profileImagePathTV, committeTV, positionTV, moneyTV, rankIDTV, expTV;
+    ImageView profileImgV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +148,8 @@ public class Profile extends ActionBarActivity {
         moneyTV = (TextView) findViewById(R.id.profile_money_tv);
         rankIDTV = (TextView) findViewById(R.id.profile_rank_id_tv);
         expTV = (TextView) findViewById(R.id.profile_exp_tv);
+
+        profileImgV = (ImageView) findViewById(R.id.profile_profile_img);
     }
 
     public void initializeProfile() {
@@ -174,6 +180,19 @@ public class Profile extends ActionBarActivity {
         expTV.setText(exp);
         //actionbarNameTv.setText(firstName);
         getSupportActionBar().setTitle(firstName+" "+lastName);
+
+        FileInputStream file = null;
+
+        try {
+            file = openFileInput(Tags.PROFILE_PROFILE_IMAGE_FILE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if(file != null){
+            profileImg = BitmapFactory.decodeStream(file);
+            profileImgV.setImageBitmap(profileImg);
+        }
     }
 
 

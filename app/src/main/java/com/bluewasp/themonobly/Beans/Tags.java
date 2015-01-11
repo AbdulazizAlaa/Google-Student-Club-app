@@ -32,6 +32,7 @@ public class Tags {
     public static final String LOGIN_USER_ID = "id";
 
     //profile
+    public static final String PROFILE_PROFILE_IMAGE_FILE = "profileImage";
     public static final String PROFILE_USER_ID = "id";
     public static final String PROFILE_FIRST_NAME = "first_name";
     public static final String PROFILE_LAST_NAME = "last_name";
