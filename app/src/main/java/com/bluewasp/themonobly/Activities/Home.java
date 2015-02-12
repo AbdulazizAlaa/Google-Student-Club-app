@@ -343,6 +343,7 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
                             long id) {
         // TODO Auto-generated method stub
         Log.i(Tags.TAG_LOG, "onitemclick");
+        Intent i;
         switch (position) {
             case 1:
                 // Market
@@ -351,6 +352,8 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
                 break;
             case 2:
                 // Community
+                i = new Intent(Home.this, Community.class);
+                startActivity(i);
                 //closing drawer
                 drawerLayout.closeDrawer(Gravity.LEFT);
                 break;

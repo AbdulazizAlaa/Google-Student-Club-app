@@ -9,5 +9,6 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_register">Register</string>
     <string name="title_activity_login_register">Monobly</string>
+    <string name="title_activity_community">Community</string>
 
 </resources>
