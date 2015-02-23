@@ -143,11 +143,11 @@ public class Home extends ActionBarActivity implements View.OnClickListener,
 
         //adding menu items to the array list
         menuItemList.add(new SideMenuItemData("Market",
-                R.drawable.side_menu_market_icon));
+                R.drawable.icon_market_side_menu));
         menuItemList.add(new SideMenuItemData("Community",
-                R.drawable.side_menu_community_icon));
+                R.drawable.icon_community_side_menu));
         menuItemList.add(new SideMenuItemData("Top Players",
-                R.drawable.side_menu_top_icon));
+                R.drawable.icon_top_player_side_menu));
         menuItemList.add(new SideMenuItemData("Events",
                 R.drawable.side_menu_event_icon));
         menuItemList.add(new SideMenuItemData("Logout",
