@@ -72,6 +72,10 @@ public class Profile extends ActionBarActivity {
 
         badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
         badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
+        badgesItemsData.add(new ProfileListItemData("First Badge", BitmapFactory.decodeResource(this.getResources(), R.drawable.user)));
 
         badgesAdapter = new ProfileListAdapter(this, badgesItemsData);
 

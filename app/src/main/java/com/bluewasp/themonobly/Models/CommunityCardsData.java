@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 public class CommunityCardsData {
 
     private Bitmap profileImage;
-    private String name, position, commity, level;
+    private String name, position, commity, level, profileImagePath;
 
 
     public CommunityCardsData(Bitmap profileImage, String name, String position, String commity, String level) {
@@ -17,6 +17,14 @@ public class CommunityCardsData {
         this.position = position;
         this.commity = commity;
         this.level = level;
+    }
+
+    public CommunityCardsData(String name, String position, String committee, String level, String profileImagePath) {
+        this.name = name;
+        this.position = position;
+        this.commity = committee;
+        this.level = level;
+        this.profileImagePath = profileImagePath;
     }
 
     public Bitmap getProfileImage() {
@@ -39,6 +47,10 @@ public class CommunityCardsData {
         return level;
     }
 
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
     public void setProfileImage(Bitmap profileImage) {
         this.profileImage = profileImage;
     }
@@ -57,5 +69,9 @@ public class CommunityCardsData {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
     }
 }

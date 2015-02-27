@@ -41,6 +41,7 @@ public class Tags {
     public static final String PROFILE_PROFILE_IMAGE_PATH = "profile_img_path";
     public static final String PROFILE_COMMITTE = "committe";
     public static final String PROFILE_POSITION = "position";
+    public static final String PROFILE_LEVEL = "level";
     public static final String PROFILE_MONEY = "money";
     public static final String PROFILE_RANK_ID = "rank_id";
     public static final String PROFILE_EXPERIENCE = "exp";
@@ -50,5 +51,9 @@ public class Tags {
     public static final String PREF_STATUS = "status";
     public static final String PREF_LOGGED_IN = "logged_in";
     public static final String PREF_NOT_LOGGED_IN = "logged_out";
+
+    //Community
+    public static final String COMMUNITY_URL = "http://gsc-asu.com/GSC/community/get_all_users_data_for_mobile";
+    public static final String COMMUNITY_USERS_TAG = "users";
 
 }
